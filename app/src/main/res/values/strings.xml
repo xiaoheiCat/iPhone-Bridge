@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">iPhone 桥接</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- 主界面 -->
+    <string name="connection_status">连接状态</string>
+    <string name="device_info">设备信息</string>
+    <string name="scan_devices">扫描设备</string>
+    <string name="connect">连接</string>
+    <string name="auto_connect">自动连接</string>
+    <string name="notifications">通知列表</string>
+    
+    <!-- 设备扫描 -->
+    <string name="start_scan">开始扫描</string>
+    <string name="stop_scan">停止扫描</string>
+    <string name="scanning">正在扫描...</string>
+    <string name="device_name">设备名称</string>
+    <string name="device_address">设备地址</string>
+    <string name="paired">已配对</string>
+    
+    <!-- 通知详情 -->
+    <string name="notification_detail">通知详情</string>
+    <string name="title">标题</string>
+    <string name="message">消息内容</string>
+    <string name="app">应用</string>
+    <string name="time">时间</string>
+    <string name="category">类别</string>
+    <string name="positive_action">积极操作</string>
+    <string name="negative_action">消极操作</string>
+    
+    <!-- 状态信息 -->
+    <string name="disconnected">未连接</string>
+    <string name="connecting">连接中...</string>
+    <string name="connected">已连接</string>
+    <string name="no_device">未选择设备</string>
+    
+    <!-- 错误信息 -->
+    <string name="bluetooth_not_supported">设备不支持蓝牙</string>
+    <string name="bluetooth_not_enabled">请启用蓝牙</string>
+    <string name="location_permission_required">需要位置权限才能扫描蓝牙设备</string>
+    <string name="bluetooth_permission_required">需要蓝牙权限</string>
+    
+</resources>

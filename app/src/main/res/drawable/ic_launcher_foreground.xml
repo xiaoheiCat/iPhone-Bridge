@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:translateX="10.8"
+        android:translateY="10.8">
+        <!-- Phone outline -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M35,20 L65,20 Q70,20 70,25 L70,75 Q70,80 65,80 L35,80 Q30,80 30,75 L30,25 Q30,20 35,20 Z" />
+        <!-- Screen -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M35,28 L65,28 L65,68 L35,68 Z" />
+        <!-- Home button -->
+        <path
+            android:fillColor="#CCCCCC"
+            android:pathData="M50,72 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0" />
+        <!-- Bridge/connection lines -->
+        <path
+            android:strokeColor="#FF6B35"
+            android:strokeWidth="2"
+            android:pathData="M20,50 L30,50" />
+        <path
+            android:strokeColor="#FF6B35"
+            android:strokeWidth="2"
+            android:pathData="M70,50 L80,50" />
+        <!-- Connection dots -->
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M18,50 m-2,0 a2,2 0,1,1 4,0 a2,2 0,1,1 -4,0" />
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M82,50 m-2,0 a2,2 0,1,1 4,0 a2,2 0,1,1 -4,0" />
+    </group>
+</vector>

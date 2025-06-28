@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    
+    <!-- 状态颜色 -->
+    <color name="connected_green">#4CAF50</color>
+    <color name="disconnected_red">#F44336</color>
+    <color name="connecting_orange">#FF9800</color>
+    
+    <!-- 背景颜色 -->
+    <color name="background_light">#FAFAFA</color>
+    <color name="card_background">#FFFFFF</color>
+    
+    <!-- 文本颜色 -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+    
+    <!-- 分隔线颜色 -->
+    <color name="divider">#E0E0E0</color>
+    
+    <!-- 通知相关颜色 -->
+    <color name="notification_unread">#FF5722</color>
+    <color name="notification_read">#9E9E9E</color>
+    
+</resources>
