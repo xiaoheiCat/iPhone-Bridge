@@ -22,13 +22,20 @@
 8. 最后，请在 iOS 设备上同意系统通知共享请求，配置完成。
 
 # 参考资料
+
 [Android BLE开发之操作IOS ANCS](https://www.jianshu.com/p/88858b8e5e67)
+
 [Android BLE开发之初识GATT](https://www.jianshu.com/p/29a730795294)
+
 [苹果通知中心服务ANCS协议分析](https://www.jianshu.com/p/2ddf76ab85b0)
+
 [苹果通知中心服务ANCS协议分析二](https://www.jianshu.com/p/b82db7b6312f)
+
 [brookwillow/ANCSReader · GitHub](https://github.com/brookwillow/ANCSReader)
+
 [Apple Notification Center Service (ANCS) Specification Documents](https://developer.apple.com/library/archive/documentation/CoreBluetooth/Reference/AppleNotificationCenterServiceSpecification/Specification/Specification.html#//apple_ref/doc/uid/TP40013460-CH1-SW7)
 
 # 特别感谢
 - 小时不识月z (简书) / brookwillow (GitHub)
+
 - Claude 大人 (没有它，也许就没有这个项目 TwT)
