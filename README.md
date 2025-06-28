@@ -35,7 +35,12 @@
 
 [Apple Notification Center Service (ANCS) Specification Documents](https://developer.apple.com/library/archive/documentation/CoreBluetooth/Reference/AppleNotificationCenterServiceSpecification/Specification/Specification.html#//apple_ref/doc/uid/TP40013460-CH1-SW7)
 
+# Star 历史
+
+[![Star 历史图表](https://api.star-history.com/svg?repos=xiaoheiCat/iPhone-Bridge&type=Date)](https://www.star-history.com/#xiaoheiCat/iPhone-Bridge&Date)
+
 # 特别感谢
+
 - 小时不识月z (简书) / brookwillow (GitHub)
 
 - Claude 大人 (没有它，也许就没有这个项目 TwT)
