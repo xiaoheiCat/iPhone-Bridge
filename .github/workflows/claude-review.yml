@@ -9,7 +9,7 @@ on:
     #   - "src/**/*.tsx"
     #   - "src/**/*.js"
     #   - "src/**/*.jsx"
- 
+
 jobs:
   claude-review:
     # Optional: Filter by PR author
@@ -34,10 +34,11 @@ jobs:
         id: claude-review
         uses: anthropics/claude-code-action@v1
         env:
-          # ANTHROPIC_BASE_URL: https://api.moonshot.cn/anthropic
-          ANTHROPIC_BASE_URL: https://open.bigmodel.cn/api/anthropic
+          ANTHROPIC_BASE_URL: https://ark.cn-beijing.volces.com/api/coding
+          ANTHROPIC_MODEL: ark-code-latest
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_bots: '*'
           track_progress: true
           prompt: |
             REPO: ${{ github.repository }}
