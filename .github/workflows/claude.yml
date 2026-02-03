@@ -34,8 +34,8 @@ jobs:
         id: claude
         uses: anthropics/claude-code-action@v1
         env:
-          # ANTHROPIC_BASE_URL: https://api.moonshot.cn/anthropic
-          ANTHROPIC_BASE_URL: https://open.bigmodel.cn/api/anthropic
+          ANTHROPIC_BASE_URL: https://ark.cn-beijing.volces.com/api/coding
+          ANTHROPIC_MODEL: ark-code-latest
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           claude_args: |
