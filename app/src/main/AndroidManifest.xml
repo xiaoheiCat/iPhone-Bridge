@@ -7,26 +7,26 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    
+
     <!-- Android 12+ 蓝牙权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-    
+
     <!-- 前台服务权限 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
-    
+
     <!-- 通知权限 -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    
+
     <!-- 电源管理权限 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-    
+
     <!-- 自启动权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    
+
     <!-- 蓝牙功能要求 -->
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -37,7 +37,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        
+
         <!-- 主活动 -->
         <activity
             android:name=".MainActivity"
@@ -48,19 +48,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <!-- 设备扫描活动 -->
         <activity
             android:name=".DeviceScannerActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-        
+
         <!-- 通知详情活动 -->
         <activity
             android:name=".NotificationDetailActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-        
+
+        <!-- 过滤设置活动 -->
+        <activity
+            android:name=".FilterSettingsActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:label="通知过滤设置" />
+
         <!-- 桥接服务 -->
         <service
             android:name=".BridgeService"
@@ -68,7 +75,7 @@
             android:exported="false"
             android:foregroundServiceType="connectedDevice"
             android:stopWithTask="false" />
-        
+
         <!-- 开机自启动接收器 -->
         <receiver
             android:name=".BootReceiver"
