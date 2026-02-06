@@ -382,9 +382,13 @@ public class BridgeService extends Service {
             // title
             (byte) 0x01, (byte) 0xff, (byte) 0xff,
             // message
-            (byte) 0x03, (byte) 0xff, (byte) 0xff
+            (byte) 0x03, (byte) 0xff, (byte) 0xff,
+            // positive action label
+            (byte) 0x06, (byte) 0xff, (byte) 0x00,
+            // negative action label
+            (byte) 0x07, (byte) 0xff, (byte) 0x00
         };
-        
+
         if (bluetoothGatt != null && controlPointChar != null) {
             controlPointChar.setValue(getNotificationAttribute);
             boolean success = bluetoothGatt.writeCharacteristic(controlPointChar);
@@ -418,7 +422,7 @@ public class BridgeService extends Service {
     
     private void showLocalNotification(NotificationHandler.NotificationInfo info) {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        
+
         String channelId = "iphone_notifications";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
@@ -428,16 +432,16 @@ public class BridgeService extends Service {
             );
             notificationManager.createNotificationChannel(channel);
         }
-        
+
         String appName = ANCSConstants.getAppDisplayName(info.appId);
         String notificationTitle = "";
         String notificationContent = "";
-        
+
         // 检查是否为应用程序类型的通知（除了系统通知类型外的其他类型）
         boolean isAppNotification = info.categoryId != NotificationHandler.CATEGORY_ID_INCOMING_CALL &&
                                    info.categoryId != NotificationHandler.CATEGORY_ID_MISSED_CALL &&
                                    info.categoryId != NotificationHandler.CATEGORY_ID_VOICEMAIL;
-        
+
         if (isAppNotification) {
             // 对于应用程序类型，将消息内容的第一行作为标题，第二行作为消息内容
             String fullContent = "";
@@ -452,7 +456,7 @@ public class BridgeService extends Service {
                 if (!fullContent.isEmpty()) fullContent += "\n";
                 fullContent += info.message;
             }
-            
+
             if (!fullContent.isEmpty()) {
                 String[] lines = fullContent.split("\n", 2);
                 notificationTitle = lines[0];
@@ -464,7 +468,7 @@ public class BridgeService extends Service {
         } else {
             // 对于系统通知类型，使用应用名称作为标题
             notificationTitle = appName;
-            
+
             // 构建完整的通知内容
             String fullMessage = "";
             if (info.title != null && !info.title.isEmpty()) {
@@ -478,22 +482,62 @@ public class BridgeService extends Service {
                 if (!fullMessage.isEmpty()) fullMessage += "\n";
                 fullMessage += info.message;
             }
-            
+
             if (fullMessage.isEmpty()) {
                 // 如果没有有效内容，不推送通知
                 return;
             }
             notificationContent = fullMessage;
         }
-        
+
+        // 创建点击通知时打开详情页的Intent
+        Intent detailIntent = NotificationDetailActivity.createIntent(null, info.uid);
+        detailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent detailPendingIntent = PendingIntent.getActivity(
+            this,
+            info.uid.hashCode(),
+            detailIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentTitle(notificationTitle)
             .setContentText(notificationContent)
             .setStyle(new NotificationCompat.BigTextStyle().bigText(notificationContent))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(detailPendingIntent)
             .setAutoCancel(true);
-        
+
+        // 添加操作按钮
+        if (info.hasPositiveAction) {
+            String positiveLabel = info.positiveActionLabel != null ? info.positiveActionLabel : "确认";
+            Intent positiveIntent = new Intent(this, NotificationActionReceiver.class);
+            positiveIntent.setAction(NotificationActionReceiver.ACTION_POSITIVE);
+            positiveIntent.putExtra(NotificationActionReceiver.EXTRA_NOTIFICATION_UID, info.uid);
+            PendingIntent positivePendingIntent = PendingIntent.getBroadcast(
+                this,
+                (info.uid + "_positive").hashCode(),
+                positiveIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+            );
+            builder.addAction(android.R.drawable.ic_input_add, positiveLabel, positivePendingIntent);
+        }
+
+        if (info.hasNegativeAction) {
+            String negativeLabel = info.negativeActionLabel != null ? info.negativeActionLabel : "取消";
+            Intent negativeIntent = new Intent(this, NotificationActionReceiver.class);
+            negativeIntent.setAction(NotificationActionReceiver.ACTION_NEGATIVE);
+            negativeIntent.putExtra(NotificationActionReceiver.EXTRA_NOTIFICATION_UID, info.uid);
+            PendingIntent negativePendingIntent = PendingIntent.getBroadcast(
+                this,
+                (info.uid + "_negative").hashCode(),
+                negativeIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+            );
+            builder.addAction(android.R.drawable.ic_delete, negativeLabel, negativePendingIntent);
+        }
+
         notificationManager.notify(info.uid.hashCode(), builder.build());
     }
     
