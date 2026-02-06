@@ -1,5 +1,6 @@
 package stu.xiaohei.iphonebridge;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -40,6 +41,11 @@ public class NotificationActionReceiver extends BroadcastReceiver {
             Log.e(TAG, "Unknown action: " + action);
             return;
         }
+
+        // 立即取消通知，提供即时反馈
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(uid.hashCode());
+        Log.d(TAG, "Cancelled notification for UID: " + uid);
 
         // 绑定服务并执行操作
         Intent serviceIntent = new Intent(context, BridgeService.class);
