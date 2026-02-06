@@ -1,28 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    
+    <!-- Material Design 3 配色方案 - iOS 风格 -->
+    <color name="colorPrimary">#007AFF</color>
+    <color name="colorPrimaryDark">#0051D5</color>
+    <color name="colorAccent">#FF3B30</color>
+
     <!-- 状态颜色 -->
-    <color name="connected_green">#4CAF50</color>
-    <color name="disconnected_red">#F44336</color>
-    <color name="connecting_orange">#FF9800</color>
-    
+    <color name="connected_green">#34C759</color>
+    <color name="disconnected_red">#FF3B30</color>
+    <color name="connecting_orange">#FF9500</color>
+    <color name="scanning_blue">#007AFF</color>
+
     <!-- 背景颜色 -->
-    <color name="background_light">#FAFAFA</color>
+    <color name="background_light">#F2F2F7</color>
+    <color name="background_white">#FFFFFF</color>
     <color name="card_background">#FFFFFF</color>
-    
+    <color name="surface_overlay">#F9F9F9</color>
+
     <!-- 文本颜色 -->
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#8E8E93</color>
+    <color name="text_tertiary">#C7C7CC</color>
     <color name="text_hint">#BDBDBD</color>
-    
+
     <!-- 分隔线颜色 -->
-    <color name="divider">#E0E0E0</color>
-    
+    <color name="divider">#C6C6C8</color>
+    <color name="divider_light">#E5E5EA</color>
+
     <!-- 通知相关颜色 -->
-    <color name="notification_unread">#FF5722</color>
-    <color name="notification_read">#9E9E9E</color>
-    
+    <color name="notification_unread">#FF3B30</color>
+    <color name="notification_read">#8E8E93</color>
+    <color name="notification_bg">#FFFFFF</color>
+    <color name="notification_bg_filtered">#FFFBF0</color>
+
+    <!-- 卡片阴影 -->
+    <color name="shadow">#1A000000</color>
+
+    <!-- 按钮颜色 -->
+    <color name="button_primary">#007AFF</color>
+    <color name="button_secondary">#8E8E93</color>
+    <color name="button_success">#34C759</color>
+    <color name="button_danger">#FF3B30</color>
+
+    <!-- 图标颜色 -->
+    <color name="icon_tint">#8E8E93</color>
+    <color name="icon_active">#007AFF</color>
+
 </resources>
