@@ -201,9 +201,14 @@ public class NotificationDetailActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(this::finish, 1000);
     }
     
-    public static Intent createIntent(AppCompatActivity activity, String notificationUid) {
-        Intent intent = new Intent(activity, NotificationDetailActivity.class);
+    public static Intent createIntent(Context context, String notificationUid) {
+        Intent intent = new Intent(context, NotificationDetailActivity.class);
         intent.putExtra(EXTRA_NOTIFICATION_UID, notificationUid);
         return intent;
+    }
+
+    @Deprecated
+    public static Intent createIntent(AppCompatActivity activity, String notificationUid) {
+        return createIntent((Context) activity, notificationUid);
     }
 }

@@ -81,7 +81,18 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-        
+
+        <!-- 通知操作接收器 -->
+        <receiver
+            android:name=".NotificationActionReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="stu.xiaohei.iphonebridge.ACTION_POSITIVE" />
+                <action android:name="stu.xiaohei.iphonebridge.ACTION_NEGATIVE" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
