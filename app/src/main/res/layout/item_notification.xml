@@ -20,8 +20,9 @@
             android:layout_marginEnd="12dp"
             android:background="@android:color/holo_blue_light"
             android:gravity="center"
-            android:text="📱"
+            android:text="N"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:textColor="@android:color/white" />
 
         <LinearLayout

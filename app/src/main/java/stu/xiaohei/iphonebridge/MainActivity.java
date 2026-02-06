@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mScanButton;
     private Button mConnectButton;
     private Button mAutoConnectButton;
+    private Button mFilterButton;
     private ListView mNotificationList;
     private NotificationAdapter mNotificationAdapter;
     
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
     
     private List<NotificationItem> mNotifications = new ArrayList<>();
     private NotificationHandler mNotificationHandler = new NotificationHandler();
+    private NotificationFilter mNotificationFilter;
     
     // 通知项数据类
     public static class NotificationItem {
@@ -201,6 +203,9 @@ public class MainActivity extends AppCompatActivity {
         initBluetooth();
         registerBondReceiver();
         requestBatteryOptimizationWhitelist();
+
+        // 初始化通知过滤器
+        mNotificationFilter = new NotificationFilter(this);
         
         // 启动服务
         Intent serviceIntent = new Intent(this, BridgeService.class);
@@ -214,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
         mScanButton = findViewById(R.id.scanButton);
         mConnectButton = findViewById(R.id.connectButton);
         mAutoConnectButton = findViewById(R.id.autoConnectButton);
+        mFilterButton = findViewById(R.id.filterButton);
         mNotificationList = findViewById(R.id.notificationList);
         
         mNotificationAdapter = new NotificationAdapter(this);
@@ -226,6 +232,11 @@ public class MainActivity extends AppCompatActivity {
                 mBridgeService.startAutoReconnect();
                 updateStatus("正在尝试自动连接...");
             }
+        });
+
+        mFilterButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FilterSettingsActivity.class);
+            startActivity(intent);
         });
         
         mNotificationList.setOnItemClickListener((parent, view, position, id) -> {
@@ -406,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
         item.app = info.appId;
         item.categoryId = info.categoryId;
         item.eventId = info.eventId;
-        
+
         // 根据事件类型处理
         if (info.eventId == NotificationHandler.EVENT_ID_NOTIFICATION_REMOVED) {
             // 删除通知
@@ -426,12 +437,18 @@ public class MainActivity extends AppCompatActivity {
                 if (!fullContent.isEmpty()) fullContent += "\n";
                 fullContent += info.message;
             }
-            
+
             if (fullContent.isEmpty()) {
                 // 如果没有有效内容，不添加到通知列表
                 return;
             }
-            
+
+            // 应用过滤规则
+            if (!mNotificationFilter.shouldShowNotification(info.title, info.message)) {
+                Log.d(TAG, "Notification filtered: " + info.title);
+                return; // 被过滤掉，不显示
+            }
+
             // 添加或更新通知
             boolean found = false;
             for (int i = 0; i < mNotificationAdapter.getCount(); i++) {
@@ -442,13 +459,22 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
             }
-            
+
             if (!found) {
                 mNotificationAdapter.insert(item, 0);
             }
         }
-        
+
         mNotificationAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 重新加载过滤器设置（用户可能刚从设置页面返回）
+        if (mNotificationFilter != null) {
+            mNotificationFilter = new NotificationFilter(this);
+        }
     }
     
     private ScanCallback mScanCallback = new ScanCallback() {

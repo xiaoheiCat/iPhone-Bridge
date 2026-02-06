@@ -60,7 +60,14 @@
             android:name=".NotificationDetailActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-        
+
+        <!-- 过滤设置活动 -->
+        <activity
+            android:name=".FilterSettingsActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:label="通知过滤设置" />
+
         <!-- 桥接服务 -->
         <service
             android:name=".BridgeService"

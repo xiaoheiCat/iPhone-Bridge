@@ -87,10 +87,13 @@
             
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/filterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp" />
+        android:text="通知过滤设置"
+        android:layout_marginBottom="16dp"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored" />
 
     <TextView
         android:layout_width="match_parent"
