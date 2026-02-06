@@ -49,7 +49,6 @@
 
     <style name="OutlinedButton" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">@color/button_primary</item>
-        <item name="android:background">@drawable/button_outlined_bg</item>
         <item name="android:paddingStart">24dp</item>
         <item name="android:paddingEnd">24dp</item>
         <item name="android:paddingTop">12dp</item>
@@ -106,12 +105,6 @@
         <item name="android:minWidth">48dp</item>
         <item name="android:minHeight">48dp</item>
         <item name="android:padding">12dp</item>
-    </style>
-
-    <!-- Switch style -->
-    <style name="CustomSwitch" parent="Widget.AppCompat.CompoundButton.Switch">
-        <item name="android:thumb">@drawable/switch_thumb</item>
-        <item name="android:track">@drawable/switch_track</item>
     </style>
 
 </resources>
